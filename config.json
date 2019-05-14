@@ -2,7 +2,7 @@
 	"coin": "SHIFT",
 	"node": "https://wallet.shiftnrg.org",
 	"nodepay": "http://localhost:9305",
-	"pubkey": "120d1c3847bd272237ee712ae83de59bbeae127263196fc0f16934bcfa82d8a4",
+	"pubkey": "d9f7928a460edd8165c3bd0b2179d65247d39bc0990734eaa95380da9ee9d16b",
 	"percentage": 20,
 	"logfile": "poollogs.json",
 	"minpayout": 0.1,
