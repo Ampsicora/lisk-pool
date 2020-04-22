@@ -1,20 +1,24 @@
 # Lisk pool distribution software
 This software is created by lisk delegate "dakk", please consider a small donation if you
-use this software: "2324852447570841050L" for lisk or "7725849364280821971S" for shift or
-"AZAXtswaWS4v8eYMzJRjpd5pN3wMBj8Rmk" for ark.
+use this software: 
+- "2324852447570841050L" for lisk
+- "7725849364280821971S" for shift
+- "AZAXtswaWS4v8eYMzJRjpd5pN3wMBj8Rmk" for ark
+- "8691988869124917015R" for rise
 
 
 ## Configuration
 Fork this repo; edit config.json and modify the first lines with your settings:
 
 - pubkey: your delegate pubkey
+- address: your delegate address
 - percentage: percentage to distribute
 - secret: your secret
 - secondsecret: your second secret or null if disabled
 - node: the lisk node where you get forging info
 - nodepay: the lisk node used for payments
 - minpayout: the minimum amount for a payout
-- coin: the name of the coin (LISK, ARK, SHIFT, RISE, or whatever you want)
+- coin: the name of the coin (LISK, ARK, SHIFT, RISE, KAPU, OXY or whatever you want)
 - skip: a list of address to skip
 - donations: a list of object (address: amount) for send static amount every payout
 - donationspercentage: a list of object (address: percentage) for send static percentage every payout
@@ -54,9 +58,22 @@ First clone the lisk-pool repository and install requests:
 
 ```pip3 install requests```
 
-If you are using lisk 1.0.0 you need to install lisky:
+### Lisk
+If you are using lisk, you need to install lisk commander:
 
-```npm install lisky```
+```bash
+npm install --global --production lisk-commander@2.2.3
+```
+
+### Rise
+If you are using rise you need to dpos-api-fallback:
+
+```bash
+git clone https://github.com/vekexasia/dpos-api-fallback
+cd dpos-api-fallback
+npm install
+npm run package
+```
 
 Then start it:
 
@@ -110,11 +127,25 @@ optional arguments:
                         override the minpayout value from config file
 ```
 
-## Lisk 1.0.0 migration
+## Lisk and Rise migration for version 1.0
 
-Since Lisk version 1.0.0, APIs with secret used for creating transaction are not available 
-anymore, so we need to create and sign transactions client-side. To do this, you need to
-install lisky, lisk-pool will automatically use it in payments.sh.
+Since Lisk version 1.0.0 and Rise version 1.0, APIs with secret used for creating 
+transaction are not available anymore, so we need to use the dpos-api-fallback
+(a special thanks for vekexasia who made this tool). 
+
+First, update the lisk-pool source, update the config.json with new fields, then install dpos-api-fallback inside the lisk-pool
+directory:
+
+```bash
+cd lisk-pool
+git clone https://github.com/vekexasia/dpos-api-fallback
+cd dpos-api-fallback
+npm install
+npm run package
+```
+
+**nodejs >= 6 is mandatory for running dpos-api-fallback!**
+
 
 ## License
 Copyright 2017-2018 Davide Gessa
